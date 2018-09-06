@@ -6,5 +6,4 @@ import io.reactivex.Maybe
 interface Repository {
     fun saveUser() : Maybe<User>
     fun getUsers() : Maybe<List<User>>
-    fun giveHello(): String
 }

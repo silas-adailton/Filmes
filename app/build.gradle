@@ -78,6 +78,7 @@ dependencies {
     implementation "com.google.firebase:firebase-core:$libs.firebaseCore"
     implementation "com.google.firebase:firebase-database:$libs.firebaseDatabase"
     implementation "com.android.support:multidex:$libs.multidex"
+    implementation 'androidx.recyclerview:recyclerview:1.0.0-rc02'
 
 }
 

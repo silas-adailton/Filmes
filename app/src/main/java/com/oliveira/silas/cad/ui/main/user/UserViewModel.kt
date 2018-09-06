@@ -1,11 +1,11 @@
 package com.oliveira.silas.cad.ui.main.user
 
 import androidx.lifecycle.ViewModel
-import com.oliveira.silas.cad.data.Repository
+import com.oliveira.silas.cad.domain.UserInteractor
 
-class UserViewModel(private val repository: Repository): ViewModel(){
+class UserViewModel(val userInteractor: UserInteractor): ViewModel(){
 
-    fun sayHello() = repository.giveHello()
+//    fun sayHello() = repository.giveHello()
 
-    fun getUser() = repository.getUsers()
+    fun getUser() = userInteractor.getUserInteractor()
 }
