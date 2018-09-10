@@ -20,6 +20,10 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+
+        dataBinding {
+            enabled = true
+        }
     }
     buildTypes {
         release {
@@ -79,6 +83,8 @@ dependencies {
     implementation "com.google.firebase:firebase-database:$libs.firebaseDatabase"
     implementation "com.android.support:multidex:$libs.multidex"
     implementation 'androidx.recyclerview:recyclerview:1.0.0-rc02'
+
+    kapt 'com.android.databinding:compiler:3.1.4'
 
 }
 

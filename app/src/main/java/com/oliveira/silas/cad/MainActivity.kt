@@ -1,10 +1,8 @@
 package com.oliveira.silas.cad
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.oliveira.silas.cad.ui.main.MainFragment
-import com.oliveira.silas.cad.ui.main.user.UserViewModel
-import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
 
