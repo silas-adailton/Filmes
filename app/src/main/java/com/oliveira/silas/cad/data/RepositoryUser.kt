@@ -16,7 +16,7 @@ class RepositoryUser(private var databaseReference: DatabaseReference) : Reposit
     override fun getUsers(): Maybe<List<User>> {
 
         return Maybe.create {
-            databaseReference.addValueEventListener(object : ValueEventListener {
+            databaseReference.child("user").addValueEventListener(object : ValueEventListener {
 
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val listUser: MutableList<User> = mutableListOf()

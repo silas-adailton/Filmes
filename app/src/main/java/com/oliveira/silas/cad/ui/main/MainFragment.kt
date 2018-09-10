@@ -17,14 +17,11 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainFragment : Fragment() {
     private lateinit var viewAdapter: RecyclerView.Adapter<UserAdapter.ViewHolder>
-    private val disposable: CompositeDisposable? = null
 
     companion object {
         fun newInstance() = MainFragment()
     }
 
-    //    private lateinit var viewModel: MainViewModel
-//    val userViewModel = inject<UserViewModel>()
     val userViewModel: UserViewModel by viewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -36,17 +33,6 @@ class MainFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         initRecyclerView()
         getUsers()
-//        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-
-//        userViewModel.value.getUser()
-//        Log.i("TESTE","ViewModel : ${userViewModel.value.sayHello()}")
-//        Log.i("TESTE","Firebase : ${userViewModel.value.getUser()}")
-
-//        userViewModel.value.getUser()
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe { user -> user.get(0).name }.isDisposed
-
 
     }
 

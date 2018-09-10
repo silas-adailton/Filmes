@@ -10,9 +10,9 @@ import org.koin.dsl.module.Module
 import org.koin.dsl.module.module
 
 val repositoryModule: Module = module {
+    factory { FirebaseDatabase.getInstance().reference }
 
-    single { RepositoryUser(get()) as Repository }
-    factory { FirebaseDatabase.getInstance().getReference().child("user") }
+    single<Repository> { RepositoryUser(get()) }
 }
 
 val viewModelModule: Module = module {
@@ -22,5 +22,6 @@ val viewModelModule: Module = module {
 
 val interactorModule: Module = module {
     single { UserInteractor(get()) }
+
 }
 
