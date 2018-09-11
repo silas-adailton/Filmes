@@ -86,6 +86,12 @@ dependencies {
 
     kapt 'com.android.databinding:compiler:3.1.4'
 
+// Circle imageview
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+//Glide
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+
 }
 
 apply plugin: 'com.google.gms.google-services'

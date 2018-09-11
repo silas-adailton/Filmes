@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.ObservableField
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.oliveira.silas.cad.R
@@ -17,6 +19,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainFragment : Fragment() {
     private lateinit var viewAdapter: RecyclerView.Adapter<UserAdapter.ViewHolder>
+    private val disposable = CompositeDisposable()
 
     companion object {
         fun newInstance() = MainFragment()
@@ -37,19 +40,26 @@ class MainFragment : Fragment() {
     }
 
     private fun getUsers() {
-        userViewModel.getUser().subscribe {
+
+        disposable.add(userViewModel.getUser().subscribe {
             showUsers(it)
-        }.isDisposed
+        })
     }
 
     private fun initRecyclerView() {
         recyclerview_user.layoutManager = LinearLayoutManager(this.context)
         recyclerview_user.hasFixedSize()
+        recyclerview_user.addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
     }
 
     private fun showUsers(it: List<User>) {
         viewAdapter = UserAdapter(it)
         recyclerview_user.adapter = viewAdapter
+    }
+
+    override fun onStop() {
+        super.onStop()
+        disposable.dispose()
     }
 
 }

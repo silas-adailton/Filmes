@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.oliveira.silas.cad">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".ui.main.MainApplication"
         android:allowBackup="false"
