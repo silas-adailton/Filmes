@@ -49,6 +49,8 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
     implementation 'android.arch.navigation:navigation-fragment:1.0.0-alpha05'
+    
+    kapt "com.android.databinding:compiler:$libs.kpt"
 
 
     implementation "android.arch.persistence.room:runtime:$libs.room_version"
@@ -77,6 +79,9 @@ dependencies {
 // Koin Android ViewModel feature
     implementation "org.koin:koin-android-viewmodel:$libs.koin_version"
 
+    //Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$libs.coroutines"
+
 
 // Firebase
     implementation "com.google.firebase:firebase-core:$libs.firebaseCore"
@@ -84,13 +89,14 @@ dependencies {
     implementation "com.android.support:multidex:$libs.multidex"
     implementation 'androidx.recyclerview:recyclerview:1.0.0-rc02'
 
-    kapt 'com.android.databinding:compiler:3.1.4'
+
 
 // Circle imageview
-    implementation 'de.hdodenhof:circleimageview:2.2.0'
+    implementation "de.hdodenhof:circleimageview:$libs.circleimageview"
+
 //Glide
-    implementation 'com.github.bumptech.glide:glide:4.8.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    implementation "com.github.bumptech.glide:glide:$libs.glide"
+    annotationProcessor "com.github.bumptech.glide:compiler:$libs.glide"
 
 }
 

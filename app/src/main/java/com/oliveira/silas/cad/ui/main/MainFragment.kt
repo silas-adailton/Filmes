@@ -1,25 +1,33 @@
 package com.oliveira.silas.cad.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.ObservableField
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.oliveira.silas.cad.R
+import com.oliveira.silas.cad.databinding.MainFragmentBinding
 import com.oliveira.silas.cad.domain.User
+import com.oliveira.silas.cad.ui.main.user.UserAdapter
 import com.oliveira.silas.cad.ui.main.user.UserViewModel
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.main_fragment.*
+import kotlinx.coroutines.experimental.delay
+import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.experimental.runBlocking
 import org.koin.android.viewmodel.ext.android.viewModel
+import kotlin.concurrent.thread
 
 
 class MainFragment : Fragment() {
     private lateinit var viewAdapter: RecyclerView.Adapter<UserAdapter.ViewHolder>
     private val disposable = CompositeDisposable()
+    private lateinit var  bind: MainFragmentBinding
 
     companion object {
         fun newInstance() = MainFragment()
@@ -29,21 +37,105 @@ class MainFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.main_fragment, container, false)
+
+        bind = DataBindingUtil.inflate(inflater, R.layout.main_fragment, container, false)
+        bind.userViewModel = userViewModel
+
+        return bind.root
+
+//        return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        initRecyclerView()
+//        initRecyclerView()
         getUsers()
+//        userViewModel.getUsersCoroutines()
+//        main()
+
 
     }
 
+//    fun main() {
+//        launch { // launch new coroutine in background and continue
+//            delay(1000L) // non-blocking delay for 1 second (default time unit is ms)
+//            Log.d("TESTE","World!") // print after delay
+//        }
+//        Log.d("TESTE","Hello,") // main thread continues while coroutine is delayed
+//        Thread.sleep(2000L) // block main thread for 2 seconds to keep JVM alive
+//    }
+
+//    fun main() {
+//        launch {
+//            delay(5000L)
+//            Log.d("TESTE","World!")
+//        }
+//        Log.d("TESTE","Hello,")
+//        runBlocking {
+//            delay(2000L)
+//        }
+//    }
+
+//    fun main() = runBlocking {
+//
+//        val job = launch {
+//            delay(5000L)
+//            Log.d("TESTE","World")
+//        }
+//        Log.d("TESTE","Hello")
+//        job.join()
+//    }
+
+//    fun main() = runBlocking {
+//        val jobs = List(100_000) {
+//            launch {
+//                delay(1000L)
+//                Log.d("TESTE",".")
+//
+//            }
+//
+//        }
+//
+//        jobs.forEach { it.join() }
+//    }
+
+//    fun main() = runBlocking {
+//        launch {
+//            repeat(1000) {
+//                i ->
+//                Log.d("TESTE", "I'm sleeping $i ...")
+//                delay(500L)
+//            }
+//        }
+//
+//        delay(1300L)
+//
+//    }
+
+//    fun main() = runBlocking {
+//               val job = launch {
+//            repeat(1000) {
+//                i ->
+//                Log.d("TESTE", "I'm sleeping $i ...")
+//                delay(500L)
+//            }
+//        }
+//
+//        delay(1300L)
+//        Log.d("TESTE", "main: I'm tired of waiting!")
+//        job.cancel()
+//        job.join()
+//        Log.d("TESTE", "main: Now I can quit.")
+//
+//
+//    }
+
     private fun getUsers() {
 
-        disposable.add(userViewModel.getUser().subscribe {
-            showUsers(it)
-        })
+//        disposable.add(userViewModel.getUser()!!)
+        userViewModel.getUser()
+//            showUsers(it)
+
     }
 
     private fun initRecyclerView() {
