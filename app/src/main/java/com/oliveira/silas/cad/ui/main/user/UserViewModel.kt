@@ -9,10 +9,11 @@ import com.oliveira.silas.cad.domain.User
 import com.oliveira.silas.cad.domain.UserInteractor
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableMaybeObserver
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.launch
 
 class UserViewModel(val userInteractor: UserInteractor) : ViewModel() {
-
-//    fun getUser() = userInteractor.getUserInteractor()
 
     val loading = ObservableBoolean()
     var result: MutableList<User> = ObservableArrayList<User>()
@@ -32,7 +33,7 @@ class UserViewModel(val userInteractor: UserInteractor) : ViewModel() {
             }
 
             override fun onError(e: Throwable) {
-                Log.d("TESTE",e.message)
+                Log.d("TESTE", e.message)
             }
 
             override fun onComplete() {
@@ -44,5 +45,12 @@ class UserViewModel(val userInteractor: UserInteractor) : ViewModel() {
 //            result.clear()
 //            result.addAll(it)
 //        }
+    }
+
+    fun get(function: (List<User>) -> Unit) {
+        launch {
+//            result.clear()
+            result = userInteractor.getUserssssss()
+        }
     }
 }

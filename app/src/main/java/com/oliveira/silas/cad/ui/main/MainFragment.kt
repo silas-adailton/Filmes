@@ -17,11 +17,7 @@ import com.oliveira.silas.cad.ui.main.user.UserAdapter
 import com.oliveira.silas.cad.ui.main.user.UserViewModel
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.main_fragment.*
-import kotlinx.coroutines.experimental.delay
-import kotlinx.coroutines.experimental.launch
-import kotlinx.coroutines.experimental.runBlocking
 import org.koin.android.viewmodel.ext.android.viewModel
-import kotlin.concurrent.thread
 
 
 class MainFragment : Fragment() {
@@ -133,7 +129,9 @@ class MainFragment : Fragment() {
     private fun getUsers() {
 
 //        disposable.add(userViewModel.getUser()!!)
-        userViewModel.getUser()
+//        userViewModel.getUser()
+        userViewModel.get {
+        }
 //            showUsers(it)
 
     }

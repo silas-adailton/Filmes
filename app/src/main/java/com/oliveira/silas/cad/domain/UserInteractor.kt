@@ -13,4 +13,9 @@ class UserInteractor (private val repository: Repository){
                  .subscribeOn(Schedulers.io())
                  .observeOn(AndroidSchedulers.mainThread())
      }
+
+    fun getUserssssss(): MutableList<User> {
+
+        return repository.getUserCourotine()
+    }
 }
