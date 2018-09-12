@@ -52,6 +52,10 @@ dependencies {
     
     kapt "com.android.databinding:compiler:$libs.kpt"
 
+//Librarys
+    implementation 'androidx.recyclerview:recyclerview:1.0.0-rc02'
+    implementation "com.android.support:appcompat-v7:$libs.supportLibraryVersion"
+    implementation "androidx.appcompat:appcompat:1.0.0-rc02"
 
     implementation "android.arch.persistence.room:runtime:$libs.room_version"
     annotationProcessor "android.arch.persistence.room:compiler:$libs.room_version" // use kapt for Kotlin
@@ -88,7 +92,8 @@ dependencies {
     implementation "com.google.firebase:firebase-core:$libs.firebaseCore"
     implementation "com.google.firebase:firebase-database:$libs.firebaseDatabase"
     implementation "com.android.support:multidex:$libs.multidex"
-    implementation 'androidx.recyclerview:recyclerview:1.0.0-rc02'
+
+
 
 
 

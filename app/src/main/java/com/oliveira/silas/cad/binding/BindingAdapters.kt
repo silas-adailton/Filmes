@@ -1,6 +1,6 @@
 package com.oliveira.silas.cad.binding
 
-import android.content.res.Configuration
+import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -38,11 +38,8 @@ object bindAdapters {
 //    }
 
     @JvmStatic
-    @BindingAdapter("initRecyclerview")
-    fun initRecyclerview(recyclerView: RecyclerView, config: Configuration) {
-
-        recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
-        recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL))
-        recyclerView.setHasFixedSize(true)
+    @BindingAdapter("loading")
+    fun loading(view: View, value: Boolean) {
+        view.visibility = if (value) View.VISIBLE else View.GONE
     }
 }

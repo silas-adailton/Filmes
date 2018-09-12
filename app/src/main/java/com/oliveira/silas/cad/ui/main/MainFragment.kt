@@ -1,7 +1,6 @@
 package com.oliveira.silas.cad.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -52,86 +51,11 @@ class MainFragment : Fragment() {
 
     }
 
-//    fun main() {
-//        launch { // launch new coroutine in background and continue
-//            delay(1000L) // non-blocking delay for 1 second (default time unit is ms)
-//            Log.d("TESTE","World!") // print after delay
-//        }
-//        Log.d("TESTE","Hello,") // main thread continues while coroutine is delayed
-//        Thread.sleep(2000L) // block main thread for 2 seconds to keep JVM alive
-//    }
-
-//    fun main() {
-//        launch {
-//            delay(5000L)
-//            Log.d("TESTE","World!")
-//        }
-//        Log.d("TESTE","Hello,")
-//        runBlocking {
-//            delay(2000L)
-//        }
-//    }
-
-//    fun main() = runBlocking {
-//
-//        val job = launch {
-//            delay(5000L)
-//            Log.d("TESTE","World")
-//        }
-//        Log.d("TESTE","Hello")
-//        job.join()
-//    }
-
-//    fun main() = runBlocking {
-//        val jobs = List(100_000) {
-//            launch {
-//                delay(1000L)
-//                Log.d("TESTE",".")
-//
-//            }
-//
-//        }
-//
-//        jobs.forEach { it.join() }
-//    }
-
-//    fun main() = runBlocking {
-//        launch {
-//            repeat(1000) {
-//                i ->
-//                Log.d("TESTE", "I'm sleeping $i ...")
-//                delay(500L)
-//            }
-//        }
-//
-//        delay(1300L)
-//
-//    }
-
-//    fun main() = runBlocking {
-//               val job = launch {
-//            repeat(1000) {
-//                i ->
-//                Log.d("TESTE", "I'm sleeping $i ...")
-//                delay(500L)
-//            }
-//        }
-//
-//        delay(1300L)
-//        Log.d("TESTE", "main: I'm tired of waiting!")
-//        job.cancel()
-//        job.join()
-//        Log.d("TESTE", "main: Now I can quit.")
-//
-//
-//    }
-
     private fun getUsers() {
 
 //        disposable.add(userViewModel.getUser()!!)
 //        userViewModel.getUser()
-        userViewModel.get {
-        }
+        userViewModel.get()
 //            showUsers(it)
 
     }
