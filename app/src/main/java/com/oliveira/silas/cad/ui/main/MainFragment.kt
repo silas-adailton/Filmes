@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.oliveira.silas.cad.R
 import com.oliveira.silas.cad.databinding.MainFragmentBinding
-import com.oliveira.silas.cad.domain.User
+import com.oliveira.silas.domain.user.User
 import com.oliveira.silas.cad.ui.main.user.UserAdapter
 import com.oliveira.silas.cad.ui.main.user.UserViewModel
 import io.reactivex.disposables.CompositeDisposable

@@ -6,11 +6,9 @@ import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import com.google.firebase.FirebaseException
-import com.oliveira.silas.cad.domain.User
-import com.oliveira.silas.cad.domain.UserInteractor
+import com.oliveira.silas.domain.user.User
+import com.oliveira.silas.domain.user.interactor.UserInteractor
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
-import io.reactivex.observers.DisposableMaybeObserver
 import kotlinx.coroutines.experimental.*
 import kotlinx.coroutines.experimental.android.UI
 
