@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -54,8 +57,8 @@ class MainFragment : Fragment() {
     private fun getUsers() {
 
 //        disposable.add(userViewModel.getUser()!!)
-//        userViewModel.getUser()
-        userViewModel.get()
+        userViewModel.getUser()
+//        userViewModel.get()
 //            showUsers(it)
 
     }

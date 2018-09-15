@@ -1,39 +1,84 @@
 package com.oliveira.silas.cad.ui.main.user
 
 import android.util.Log
-import androidx.databinding.ObservableArrayList
-import androidx.databinding.ObservableBoolean
-import androidx.databinding.ObservableField
+import androidx.databinding.*
 import androidx.lifecycle.ViewModel
 import com.google.firebase.FirebaseException
 import com.oliveira.silas.domain.user.User
 import com.oliveira.silas.domain.user.interactor.UserInteractor
+import com.oliveira.silas.cad.BR
+import com.oliveira.silas.cad.domain.User
+import com.oliveira.silas.cad.domain.UserInteractor
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.experimental.*
 import kotlinx.coroutines.experimental.android.UI
 
-class UserViewModel(val userInteractor: UserInteractor) : ViewModel() {
+class UserViewModel(val userInteractor: UserInteractor) : ViewModel(), Observable {
 
+    private val callbacks: PropertyChangeRegistry by lazy { PropertyChangeRegistry() }
+
+    override fun removeOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
+        callbacks.remove(callback)
+    }
+
+    override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
+        callbacks.add(callback)
+    }
+
+    @Bindable
     val loading = ObservableBoolean()
+    @Bindable
     var result: MutableList<User> = ObservableArrayList<User>()
     val error = ObservableField<String>()
     val empty = ObservableBoolean()
-    private var list: MutableList<User>? = null
+
     private val disposable = CompositeDisposable()
 
     fun getUser() {
 
         disposable.add(
-                userInteractor.execute(userInteractor.Request()).subscribe({user->
-                    result.addAll(user)
+                return userInteractor.execute(userInteractor.Request())
+                        .subscribe(object : DisposableMaybeObserver<List<User>>() {
 
-                },{e->
-                    Log.d("TESTE", e.message)
-                },{
+                            override fun onStart() {
+                                loading.set(true)
+                            }
 
-                }))
+                            override fun onSuccess(user: List<User>) {
+                                loading.set(false)
+                                result.clear()
+                                result.addAll(user)
+
+                                notifyChange()
+                            }
+
+                            override fun onComplete() {
+                            }
+
+                            override fun onError(e: Throwable) {
+                                loading.set(false)
+                                Log.d("TESTE", e.message)
+                            }
+
+                        })
+
+        )
 
 
+//        loading.set(true)
+//
+//        disposable.add(
+//                userInteractor.execute(userInteractor.Request())
+//                        .subscribe({ user ->
+//                            result.clear()
+//                            result.addAll(user)
+//
+//                            loading.set(false)
+//
+//                        }, { e ->
+//                            loading.set(false)
+//                            Log.d("TESTE", e.message)
+//                        }))
 
 
     }
@@ -45,8 +90,8 @@ class UserViewModel(val userInteractor: UserInteractor) : ViewModel() {
             try {
                 loading.set(true)
 
-                list = async { userInteractor.getUserssssss() }.await()
-                updateUi(list!!)
+                result = async { userInteractor.getUserssssss() }.await()
+                updateUi(result)
                 delay(2000L)
                 loading.set(false)
 
@@ -63,5 +108,20 @@ class UserViewModel(val userInteractor: UserInteractor) : ViewModel() {
             result.clear()
             result = list
         }
+    }
+
+    fun notifyChange() {
+        callbacks.notifyCallbacks(this, BR._all, null)
+    }
+
+    fun notifyPropertyChanged(fieldId: Int) {
+        callbacks.notifyCallbacks(this, fieldId, null)
+
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+
+        notifyPropertyChanged(BR._all)
     }
 }
