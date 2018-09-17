@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.oliveira.silas.cad.domain.User
+import com.oliveira.silas.domain.user.User
 import com.oliveira.silas.cad.ui.main.user.UserAdapter
 
 object bindAdapters {

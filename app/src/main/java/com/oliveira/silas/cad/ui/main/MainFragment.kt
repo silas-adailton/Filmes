@@ -12,9 +12,11 @@ import androidx.lifecycle.OnLifecycleEvent
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.oliveira.silas.cad.BuildConfig
 import com.oliveira.silas.cad.R
 import com.oliveira.silas.cad.databinding.MainFragmentBinding
-import com.oliveira.silas.cad.domain.User
+import com.oliveira.silas.cad.ui.main.movie.MovieViewModel
+import com.oliveira.silas.domain.user.User
 import com.oliveira.silas.cad.ui.main.user.UserAdapter
 import com.oliveira.silas.cad.ui.main.user.UserViewModel
 import io.reactivex.disposables.CompositeDisposable
@@ -32,6 +34,7 @@ class MainFragment : Fragment() {
     }
 
     val userViewModel: UserViewModel by viewModel()
+    val movieViewModel : MovieViewModel by viewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -48,6 +51,7 @@ class MainFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 //        initRecyclerView()
         getUsers()
+        getMovies()
 //        userViewModel.getUsersCoroutines()
 //        main()
 
@@ -72,6 +76,10 @@ class MainFragment : Fragment() {
     private fun showUsers(it: List<User>) {
         viewAdapter = UserAdapter(it)
         recyclerview_user.adapter = viewAdapter
+    }
+
+    private fun getMovies() {
+        movieViewModel.getMovies(BuildConfig.API_KEY)
     }
 
     override fun onStop() {

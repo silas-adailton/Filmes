@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.oliveira.silas.cad.R
 import com.oliveira.silas.cad.databinding.ItemListUserBinding
-import com.oliveira.silas.cad.domain.User
+import com.oliveira.silas.domain.user.User
 
 class UserAdapter(private val listUser: List<User>) : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
 
