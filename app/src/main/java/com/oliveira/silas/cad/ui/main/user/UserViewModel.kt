@@ -3,15 +3,16 @@ package com.oliveira.silas.cad.ui.main.user
 import android.util.Log
 import androidx.databinding.*
 import androidx.lifecycle.ViewModel
-import com.google.firebase.FirebaseException
+import com.oliveira.silas.cad.BR
 import com.oliveira.silas.domain.user.User
 import com.oliveira.silas.domain.user.interactor.UserInteractor
-import com.oliveira.silas.cad.BR
-import com.oliveira.silas.cad.domain.User
-import com.oliveira.silas.cad.domain.UserInteractor
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.coroutines.experimental.*
+import io.reactivex.observers.DisposableMaybeObserver
 import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.delay
+import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.experimental.withContext
 
 class UserViewModel(val userInteractor: UserInteractor) : ViewModel(), Observable {
 

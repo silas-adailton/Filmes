@@ -35,6 +35,9 @@ ext {
     circleimageview = "2.2.0"
     glide = "4.8.0"
     kapt = "3.1.4"
+    retrofit = "2.4.0"
+    gson     = "2.4.0"
+    retrofitAdapter = "2.4.0"
 
     //Tests
 
@@ -87,11 +90,14 @@ ext {
             "com.android.support:support-annotations:$supportLibraryVersion"
     ]
 
+    //Domain
+
     domainDependencies = [
-            "org.jetbrains.kotlin:kotlin-stdlib-jre8:$compiler.kotlin",
+            "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$compiler.kotlin",
 //            "io.reactivex.rxjava2:rxandroid:$rxandroidVersion",
             "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
-            "io.reactivex.rxjava2:rxjava:$rxjavaVersion"
+            "io.reactivex.rxjava2:rxjava:$rxjavaVersion",
+            "com.squareup.retrofit2:retrofit:$retrofit"
 
     ]
 
@@ -108,11 +114,15 @@ ext {
 
 
     dataDependencies = [
+            "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$compiler.kotlin",
             "android.arch.persistence.room:rxjava2:$room_version",
             "android.arch.persistence.room:guava:$room_version",
             "android.arch.persistence.room:testing:$room_version",
             "com.google.firebase:firebase-core:$firebaseCore",
-            "com.google.firebase:firebase-database:$firebaseDatabase"
+            "com.google.firebase:firebase-database:$firebaseDatabase",
+            "com.squareup.retrofit2:retrofit:$retrofit",
+            "com.squareup.retrofit2:converter-gson:$gson",
+            "com.squareup.retrofit2:adapter-rxjava2:$retrofitAdapter"
 
 
     ]

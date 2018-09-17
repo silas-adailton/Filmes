@@ -31,4 +31,5 @@ dependencies {
 
     implementation domainDependencies
     testImplementation domainTestDependencies
+//    implementation project(path: ':data')
 }
