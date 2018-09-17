@@ -1,12 +1,6 @@
 package com.oliveira.silas.cad.di
 
 import com.google.firebase.database.FirebaseDatabase
-import com.oliveira.silas.cad.data.Repository
-import com.oliveira.silas.cad.data.RepositoryUser
-import com.oliveira.silas.cad.domain.UserInteractor
-import com.oliveira.silas.cad.ui.main.user.LoginViewModel
-import com.google.gson.Gson
-import com.oliveira.silas.cad.Constants
 import com.oliveira.silas.cad.ui.main.movie.MovieViewModel
 import com.oliveira.silas.cad.ui.main.user.UserViewModel
 import com.oliveira.silas.data.remote.movie.RepositoryRemoteMovie
@@ -32,7 +26,7 @@ val repositoryModule: Module = module {
 val viewModelModule: Module = module {
 
     viewModel { UserViewModel(get()) }
-    viewModel { LoginViewModel() }
+//    viewModel { LoginViewModel() }
     viewModel { MovieViewModel(get()) }
 }
 
