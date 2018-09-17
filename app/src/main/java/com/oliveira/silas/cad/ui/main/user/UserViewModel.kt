@@ -35,34 +35,30 @@ class UserViewModel(val userInteractor: UserInteractor) : ViewModel(), Observabl
     private val disposable = CompositeDisposable()
 
     fun getUser() {
+        return userInteractor.execute(userInteractor.Request())
+                .subscribe(object : DisposableMaybeObserver<List<User>>() {
 
-        disposable.add(
-                return userInteractor.execute(userInteractor.Request())
-                        .subscribe(object : DisposableMaybeObserver<List<User>>() {
+                    override fun onStart() {
+                        loading.set(true)
+                    }
 
-                            override fun onStart() {
-                                loading.set(true)
-                            }
+                    override fun onSuccess(user: List<User>) {
+                        loading.set(false)
+                        result.clear()
+                        result.addAll(user)
 
-                            override fun onSuccess(user: List<User>) {
-                                loading.set(false)
-                                result.clear()
-                                result.addAll(user)
+                        notifyChange()
+                    }
 
-                                notifyChange()
-                            }
+                    override fun onComplete() {
+                    }
 
-                            override fun onComplete() {
-                            }
+                    override fun onError(e: Throwable) {
+                        loading.set(false)
+                        Log.d("TESTE", e.message)
+                    }
 
-                            override fun onError(e: Throwable) {
-                                loading.set(false)
-                                Log.d("TESTE", e.message)
-                            }
-
-                        })
-
-        )
+                })
 
 
 //        loading.set(true)
