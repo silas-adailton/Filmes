@@ -2,27 +2,40 @@ package com.oliveira.silas.cad.ui.main.movie
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.oliveira.silas.domain.movies.Movies
-import com.oliveira.silas.domain.movies.interactor.MovieInteractor
+import com.oliveira.silas.domain.movies.Movie
+import com.oliveira.silas.domain.movies.interactor.GetPopularMoviesInteractor
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableMaybeObserver
 
-class MovieViewModel(val movieInteractor: MovieInteractor): ViewModel() {
-    fun getMovies(apiKey: String) {
+class MovieViewModel(val getPopularMoviesInteractor: GetPopularMoviesInteractor) : ViewModel() {
+    private val disposable = CompositeDisposable()
 
-        return movieInteractor.execute(movieInteractor.Request(apiKey)).subscribe(object : DisposableMaybeObserver<Movies>(){
-            override fun onSuccess(movies: Movies) {
-                Log.d("TESTE", ""+movies)
-            }
 
-            override fun onComplete() {
+    fun loadMovies(apiKey: String) = disposable.add(getUser(apiKey))
 
-            }
+    private fun getUser(apiKey: String): Disposable {
+        return getPopularMoviesInteractor.execute(getPopularMoviesInteractor.Request(apiKey))
+                .subscribeWith(object : DisposableMaybeObserver<List<Movie>>() {
+                    override fun onSuccess(movie: List<Movie>) {
+                        Log.d("TESTE", "" + movie)
+                    }
 
-            override fun onError(e: Throwable) {
+                    override fun onComplete() {
 
-                Log.d("TESTE",e.message)
-            }
+                    }
 
-        })
+                    override fun onError(e: Throwable) {
+
+                        Log.d("TESTE", e.message)
+                    }
+
+                })
     }
+
+    override fun onCleared() {
+        disposable.dispose()
+    }
+
+
 }

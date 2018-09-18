@@ -6,9 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -79,7 +76,7 @@ class MainFragment : Fragment() {
     }
 
     private fun getMovies() {
-        movieViewModel.getMovies(BuildConfig.API_KEY)
+        movieViewModel.loadMovies(BuildConfig.API_KEY)
     }
 
     override fun onStop() {

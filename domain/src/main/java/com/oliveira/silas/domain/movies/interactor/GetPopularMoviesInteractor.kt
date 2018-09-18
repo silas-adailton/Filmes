@@ -1,13 +1,13 @@
 package com.oliveira.silas.domain.movies.interactor
 
 import com.oliveira.silas.domain.InteractorMaybe
-import com.oliveira.silas.domain.movies.Movies
+import com.oliveira.silas.domain.movies.Movie
 import com.oliveira.silas.domain.movies.RepositoryMovies
 import io.reactivex.Maybe
 
-class MovieInteractor(val repositoryMovies: RepositoryMovies): InteractorMaybe<Movies, MovieInteractor.Request>() {
+class GetPopularMoviesInteractor(val repositoryMovies: RepositoryMovies): InteractorMaybe<List<Movie>, GetPopularMoviesInteractor.Request>() {
 
-    override fun create(request: Request): Maybe<Movies> {
+    override fun create(request: Request): Maybe<List<Movie>> {
         return repositoryMovies.getMovies(request.getApiKey())
     }
 
