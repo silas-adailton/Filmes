@@ -57,6 +57,7 @@ dependencies {
     testImplementation presentationTestDependencies
     androidTestImplementation presentationInstrumentationTestDependencies
     implementation 'androidx.cardview:cardview:1.0.0-rc02'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0-beta01'
 
 }
 

@@ -18,7 +18,7 @@ object bindAdapters {
     @BindingAdapter("loadRecyclerView")
     fun loadRecyclerView(recyclerView: RecyclerView, listUser: List<User>?) {
         val viewAdapter: RecyclerView.Adapter<UserAdapter.ViewHolder>
-        recyclerView.layoutManager = GridLayoutManager(recyclerView.context)
+        recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
         recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL))
         recyclerView.setHasFixedSize(true)
 
