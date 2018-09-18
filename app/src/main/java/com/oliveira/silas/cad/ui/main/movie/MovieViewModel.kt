@@ -1,28 +1,60 @@
 package com.oliveira.silas.cad.ui.main.movie
 
 import android.util.Log
+import androidx.databinding.Bindable
+import androidx.databinding.ObservableArrayList
+import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
-import com.oliveira.silas.domain.movies.Movies
-import com.oliveira.silas.domain.movies.interactor.MovieInteractor
+import com.oliveira.silas.domain.movies.Movie
+import com.oliveira.silas.domain.movies.interactor.GetPopularMoviesInteractor
+import com.oliveira.silas.domain.user.User
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableMaybeObserver
 
-class MovieViewModel(val movieInteractor: MovieInteractor): ViewModel() {
-    fun getMovies(apiKey: String) {
+class MovieViewModel(val getPopularMoviesInteractor: GetPopularMoviesInteractor) : ViewModel() {
+    private val disposable = CompositeDisposable()
 
-        return movieInteractor.execute(movieInteractor.Request(apiKey)).subscribe(object : DisposableMaybeObserver<Movies>(){
-            override fun onSuccess(movies: Movies) {
-                Log.d("TESTE", ""+movies)
-            }
+    val loading = ObservableBoolean()
+    var result: MutableList<Movie> = ObservableArrayList<Movie>()
+    val error = ObservableField<String>()
+    val empty = ObservableBoolean()
 
-            override fun onComplete() {
 
-            }
+    fun loadMovies(apiKey: String) = disposable.add(getUser(apiKey))
 
-            override fun onError(e: Throwable) {
+    private fun getUser(apiKey: String): Disposable {
+        return getPopularMoviesInteractor.execute(getPopularMoviesInteractor.Request(apiKey))
+                .subscribeWith(object : DisposableMaybeObserver<List<Movie>>() {
 
-                Log.d("TESTE",e.message)
-            }
+                    override fun onStart() {
+                        loading.set(true)
+                    }
 
-        })
+                    override fun onSuccess(movie: List<Movie>) {
+                        loading.set(false)
+                        result.clear()
+                        result.addAll(movie)
+                        Log.d("TESTE", "" + movie)
+                    }
+
+                    override fun onComplete() {
+
+                    }
+
+                    override fun onError(e: Throwable) {
+                        loading.set(false)
+
+                        Log.d("TESTE", e.message)
+                    }
+
+                })
     }
+
+    override fun onCleared() {
+        disposable.dispose()
+    }
+
+
 }
