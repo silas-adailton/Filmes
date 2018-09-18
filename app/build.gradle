@@ -6,10 +6,6 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
-//def cfg = rootProject.ext.configuration;
-def libs = rootProject.ext.libraries;
-//def test = rootProject.ext.testingLibraries;
-
 android {
     def ext = rootProject.extensions.ext
     compileSdkVersion ext.android.compileSdkVersion
@@ -45,20 +41,14 @@ android {
 dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
     annotationProcessor "com.github.bumptech.glide:compiler:4.8.0"
 
     implementation project(':domain')
     implementation project(':data')
     kapt presentationKaptDependencies
     implementation presentationDependencies
-    implementation dataDependencies
     testImplementation presentationTestDependencies
     androidTestImplementation presentationInstrumentationTestDependencies
-    implementation 'androidx.cardview:cardview:1.0.0-rc02'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0-beta01'
-
 }
 
 apply plugin: 'com.google.gms.google-services'

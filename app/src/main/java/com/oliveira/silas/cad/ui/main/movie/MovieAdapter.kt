@@ -18,9 +18,8 @@ class MovieAdapter(private val listMovies: List<Movie>): RecyclerView.Adapter<Mo
         return ViewHolder(bind)
     }
 
-    override fun getItemCount(): Int {
-        return listMovies.size
-    }
+    override fun getItemCount() = listMovies.size
+
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.movie = listMovies.get(position)

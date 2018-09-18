@@ -19,7 +19,6 @@ class MovieActivity : AppCompatActivity() {
         bind = DataBindingUtil.setContentView(this, R.layout.activity_movie)
         bind.viewModel = viewModel
 
-
         getMovies()
     }
 

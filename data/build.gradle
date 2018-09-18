@@ -31,6 +31,6 @@ dependencies {
 
     implementation project(path: ':domain')
     kapt dataKaptDependencies
-    implementation dataDependencies
+    api dataDependencies
     testImplementation dataTestDependencies
 }

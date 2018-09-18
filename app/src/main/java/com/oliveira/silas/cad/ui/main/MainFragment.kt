@@ -31,7 +31,7 @@ class MainFragment : Fragment() {
     }
 
     val userViewModel: UserViewModel by viewModel()
-    val movieViewModel : MovieViewModel by viewModel()
+//    val movieViewModel : MovieViewModel by viewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -48,7 +48,7 @@ class MainFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 //        initRecyclerView()
         getUsers()
-        getMovies()
+//        getMovies()
 //        userViewModel.getUsersCoroutines()
 //        main()
 
@@ -75,9 +75,9 @@ class MainFragment : Fragment() {
         recyclerview_user.adapter = viewAdapter
     }
 
-    private fun getMovies() {
-        movieViewModel.loadMovies(BuildConfig.API_KEY)
-    }
+//    private fun getMovies() {
+//        movieViewModel.loadMovies(BuildConfig.API_KEY)
+//    }
 
     override fun onStop() {
         super.onStop()

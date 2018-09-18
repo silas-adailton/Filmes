@@ -42,7 +42,7 @@ object bindAdapters {
     @BindingAdapter("imageUrl")
     fun ImageView.setImageUrl(imageUrl: String?) {
         Glide.with(this)
-                .load(imageUrl)
+                .load("https://image.tmdb.org/t/p/w500/$imageUrl")
                 .into(this)
     }
 
