@@ -5,10 +5,9 @@
     >
     <data>
         <import type="android.view.View"/>
-
         <variable
             name="viewModel"
-            type="com.oliveira.silas.cad.ui.main.movie.MovieViewModel"/>
+            type="com.oliveira.silas.cad.ui.main.movie.MovieViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,9 +18,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview_movie"
-            android:layout_width="368dp"
-            android:layout_height="496dp"
-            android:layout_marginBottom="8dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,13 +30,15 @@
             android:id="@+id/progressBarMovie"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="0dp"
-            android:layout_height="4dp"
-            android:layout_marginBottom="2dp"
-            app:layout_constraintBottom_toTopOf="@+id/recyclerview_movie"
+            android:layout_height="20dp"
+            android:indeterminate="true"
+            android:progress="1"
+            android:fadingEdge="horizontal"
+            android:visibility="@{viewModel.loading ? View.VISIBLE : View.GONE }"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:visibility="@{viewModel.loading ? View.VISIBLE : View.GONE }"/>
+            app:loading="@{viewModel.loading}" />
 
 
 
