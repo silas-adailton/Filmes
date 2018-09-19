@@ -1,4 +1,4 @@
-package com.oliveira.silas.cad.domain
+package com.oliveira.silas.domain.user
 
 data class User(val id: Int = 0,
                 val name: String = "",

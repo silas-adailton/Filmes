@@ -12,7 +12,8 @@ class MainApplication : Application() {
         startKoin(this,
                 listOf(repositoryModule,
                         viewModelModule,
-                        interactorModule))
+                        interactorModule,
+                        retrofit))
 
     }
 }

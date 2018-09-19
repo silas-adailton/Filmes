@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.oliveira.silas.cad.ui.main.user.LoginViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--<com.google.androidx.material.textfield.TextInputLayout-->
+            <!--android:id="@+id/TextInputLayout_email"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="16dp"-->
+            <!--android:layout_marginTop="16dp"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintHorizontal_bias="0.0"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="parent">-->
+
+            <!--<EditText-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:hint="email"-->
+                <!--android:inputType="textEmailAddress"-->
+                <!--android:maxLines="1"-->
+                <!--android:text="@={viewModel.email}"-->
+                <!--android:textSize="20sp" />-->
+
+        <!--</com.google.androidx.material.textfield.TextInputLayout>-->
+
+
+        <!--<com.google.androidx.material.textfield.TextInputLayout-->
+            <!--android:id="@+id/text_password"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintHorizontal_bias="1.0"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/TextInputLayout_email">-->
+
+            <!--<EditText-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:hint="password"-->
+                <!--android:maxLines="1"-->
+                <!--android:text="@={viewModel.password}"-->
+                <!--android:textSize="20sp" />-->
+
+        <!--</com.google.androidx.material.textfield.TextInputLayout>-->
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="219dp"
+            android:text="login"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_password"
+            app:layout_constraintVertical_bias="0.083" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

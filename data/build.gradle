@@ -1,0 +1,36 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    def ext = rootProject.extensions.ext
+    compileSdkVersion ext.android.compileSdkVersion
+
+    defaultConfig {
+
+        minSdkVersion ext.android.minSdkVersion
+        targetSdkVersion ext.android.targetSdkVersion
+        versionCode ext.android.versionCode
+        versionName ext.android.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(path: ':domain')
+    kapt dataKaptDependencies
+    api dataDependencies
+    testImplementation dataTestDependencies
+}
