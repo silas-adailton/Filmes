@@ -3,6 +3,7 @@ package com.oliveira.silas.cad.di
 import com.google.firebase.database.FirebaseDatabase
 import com.oliveira.silas.cad.Constants
 import com.oliveira.silas.cad.ui.main.movie.MovieViewModel
+import com.oliveira.silas.cad.ui.main.user.LoginViewModel
 import com.oliveira.silas.cad.ui.main.user.UserViewModel
 import com.oliveira.silas.data.remote.movie.RepositoryRemoteMovie
 import com.oliveira.silas.data.remote.movie.mapper.MovieMapper
@@ -29,7 +30,7 @@ val repositoryModule: Module = module {
 val viewModelModule: Module = module {
 
     viewModel { UserViewModel(get()) }
-//    viewModel { LoginViewModel() }
+    viewModel { LoginViewModel() }
     viewModel { MovieViewModel(get()) }
 }
 
