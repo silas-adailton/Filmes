@@ -15,6 +15,7 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
+import org.mockito.internal.matchers.Any
 import org.mockito.junit.MockitoJUnitRunner
 
 @Suppress("IllegalIdentifier")
@@ -57,12 +58,14 @@ class MovieViewModelTest {
 
     }
 
-//    private fun <T> any(type : Class<T>): T {
-//        Mockito.any(type)
-//        return uninitialized()
-//    }
-//
-//    private fun <T> uninitialized(): T {
-//        return null as T
-//    }
+    private fun <T> any(type : Class<T>): T {
+        Mockito.any(type)
+        return uninitialized()
+    }
+
+    private fun <T> uninitialized(): T {
+        return null as T
+    }
+
+    inline fun <reified T: Any> any() = Mockito.any(T::class.java)?: T::class.java.newInstance()
 }
