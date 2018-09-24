@@ -12,7 +12,7 @@ class GetPopularMoviesInteractor(val repositoryMovies: RepositoryMovies): Intera
     }
 
 
-    inner class Request(private var api_key: String) : InteractorMaybe.Request() {
+     inner class Request(private var api_key: String) : InteractorMaybe.Request() {
         fun getApiKey(): String {
             return api_key
         }
