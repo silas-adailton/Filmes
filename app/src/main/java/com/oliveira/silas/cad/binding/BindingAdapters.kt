@@ -6,6 +6,7 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.*
 import com.bumptech.glide.Glide
+import com.google.android.material.textfield.TextInputLayout
 import com.oliveira.silas.cad.ui.main.movie.MovieAdapter
 import com.oliveira.silas.domain.user.User
 import com.oliveira.silas.cad.ui.main.user.UserAdapter
@@ -14,26 +15,23 @@ import com.oliveira.silas.domain.movies.Movie
 object bindAdapters {
     @JvmStatic
     @BindingAdapter("loadRecyclerView")
-    fun loadRecyclerView(recyclerView: RecyclerView, listUser: List<User>?) {
-        val viewAdapter: RecyclerView.Adapter<UserAdapter.ViewHolder>
-        recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
-        recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL))
+    fun loadRecyclerView(recyclerView: RecyclerView, listUser: List<User>) {
+//        recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
+//        recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL))
         recyclerView.setHasFixedSize(true)
-
-        viewAdapter = UserAdapter(listUser!!)
-        recyclerView.adapter = viewAdapter
+        recyclerView.adapter = UserAdapter(listUser)
     }
 
     @JvmStatic
     @BindingAdapter("loadRecyclerViewMovies")
-    fun loadRecyclerViewMovies(recyclerView: RecyclerView, listMovies: List<Movie>?) {
-        val viewAdapter: RecyclerView.Adapter<MovieAdapter.ViewHolder>
+    fun loadRecyclerViewMovies(recyclerView: RecyclerView, listMovies: List<Movie>) {
         recyclerView.layoutManager = StaggeredGridLayoutManager(2,1)
-        recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL))
+//        recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL))
         recyclerView.setHasFixedSize(true)
 
-        viewAdapter = MovieAdapter(listMovies!!)
-        recyclerView.adapter = viewAdapter
+
+//        viewAdapter = MovieAdapter(listMovies!!)
+        recyclerView.adapter = MovieAdapter(listMovies)
     }
 
     @JvmStatic
@@ -55,4 +53,14 @@ object bindAdapters {
     fun loading(view: View, value: Boolean) {
         view.visibility = if (value) View.VISIBLE else View.GONE
     }
+
+//    @JvmStatic
+//    @BindingAdapter("errorsss")
+//    fun TextInputLayout.errorsss(textInputLayout: TextInputLayout, string: String?) {
+//        if (string?.isEmpty()!!) {
+//            textInputLayout.error = null
+//        }else {
+//            textInputLayout.error = string
+//        }
+//    }
 }

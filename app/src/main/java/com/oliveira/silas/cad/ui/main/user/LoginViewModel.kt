@@ -10,14 +10,20 @@ import com.oliveira.silas.cad.BR
 
 class LoginViewModel : ViewModel() {
 
+    val error = ObservableField<String>()
+    val password = ObservableField<String>()
+    val email = ObservableField<String>()
 
-    val password =  ObservableField<String>()
 
-    val email =  ObservableField<String>()
+    fun validateLogin() {
 
-    fun validateLogin()  {
+        if (email.get().isNullOrEmpty()) {
+            error.set("Digite o email")
+        }else {
 
-        Log.d("TESTE", email.get() + password.get())
+            Log.d("TESTE", email.get() + password.get())
+        }
+
 
     }
 }

@@ -16,14 +16,13 @@ import org.mockito.MockitoAnnotations
 
 class UserViewModelTest {
 
-    @Mock
+
     val userInteractor = mock(UserInteractor::class.java)
 
     private lateinit var userViewModel : UserViewModel
 
     @Before
     fun setUp() {
-        MockitoAnnotations.initMocks(this)
         userViewModel = UserViewModel(userInteractor)
     }
 
@@ -33,7 +32,8 @@ class UserViewModelTest {
 
         val listUser: MutableList<User> = listOf(User(1,"Teste",34,"gdgdfgdfgdgdfg")).toMutableList()
 
-        `when`(userInteractor.getUserssssss()).thenReturn(listUser)
+        `when`(userInteractor.execute(ArgumentMatchers.nullable(UserInteractor.Request::class.java))).thenReturn(Maybe.just(listUser))
+        
         userViewModel.getUser()
 
         assertThat(userViewModel.result, `is`(listUser))

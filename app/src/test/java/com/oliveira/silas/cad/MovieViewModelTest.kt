@@ -11,6 +11,7 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers.any
+import org.mockito.ArgumentMatchers.nullable
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.`when`
@@ -38,15 +39,11 @@ class MovieViewModelTest {
     @Throws(Exception::class)
     fun `When fetching the movie list, you must update the result`() {
         val listMovie = mockListMovies()
-//        movieViewModel.loadMovies(BuildConfig.API_KEY)
 
-        `when`(getPopularMoviesInteractor.execute(any(GetPopularMoviesInteractor.Request::class.java))).thenReturn(Maybe.just(listMovie))
+        `when`(getPopularMoviesInteractor.execute(nullable(GetPopularMoviesInteractor.Request::class.java))).thenReturn(Maybe.just(listMovie))
         movieViewModel.getPopularMoviesInteractor.Request(BuildConfig.API_KEY)
 
         movieViewModel.loadMovies(BuildConfig.API_KEY)
-//        verify(movieViewModel.loadMovies(BuildConfig.API_KEY))
-
-//        assertThat(movieViewModel.result, `is`(notNullValue()))
 
         assertThat(movieViewModel.result, `is`(listMovie))
     }
@@ -57,15 +54,4 @@ class MovieViewModelTest {
                 2F, "uydasd", false, 5F, 5))
 
     }
-
-    private fun <T> any(type : Class<T>): T {
-        Mockito.any(type)
-        return uninitialized()
-    }
-
-    private fun <T> uninitialized(): T {
-        return null as T
-    }
-
-    inline fun <reified T: Any> any() = Mockito.any(T::class.java)?: T::class.java.newInstance()
 }
