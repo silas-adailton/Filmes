@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import com.oliveira.silas.cad.databinding.ActivityLoginBinding
 import org.koin.android.viewmodel.ext.android.viewModel
 import com.oliveira.silas.cad.R
+import com.oliveira.silas.cad.ui.main.TestDialogFragment
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var bind: ActivityLoginBinding
@@ -19,6 +20,9 @@ class LoginActivity : AppCompatActivity() {
 
         bind = DataBindingUtil.setContentView(this, R.layout.activity_login)
         bind.viewModel = viewModel
+
+        val testDialogFragment : TestDialogFragment = TestDialogFragment()
+        testDialogFragment.show(supportFragmentManager, "testDialogFragment")
 
 //         val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
 //            when (item.itemId) {
