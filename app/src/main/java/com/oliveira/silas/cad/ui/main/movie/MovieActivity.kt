@@ -1,7 +1,7 @@
 package com.oliveira.silas.cad.ui.main.movie
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.oliveira.silas.cad.BuildConfig
 import com.oliveira.silas.cad.R
@@ -23,6 +23,6 @@ class MovieActivity : AppCompatActivity() {
     }
 
     private fun getMovies() {
-        viewModel.loadMovies(BuildConfig.API_KEY)
+        viewModel.loadPopularMovies(BuildConfig.API_KEY)
     }
 }

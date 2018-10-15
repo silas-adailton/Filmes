@@ -25,7 +25,7 @@ ext {
     rxjavaVersion = "2.1.16"
     rxAndroidVersion = "2.1.0"
     room_version = "1.1.1"
-    koin_version = "1.0.0-RC-1"
+    koin_version = "1.0.1"
     ktxVersion = "1.0.0-rc02"
     firebaseCore = "16.0.3"
     firebaseDatabase = "16.0.1"

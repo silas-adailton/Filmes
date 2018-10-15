@@ -76,7 +76,7 @@ class MainFragment : Fragment() {
     }
 
 //    private fun getMovies() {
-//        movieViewModel.loadMovies(BuildConfig.API_KEY)
+//        movieViewModel.loadPopularMovies(BuildConfig.API_KEY)
 //    }
 
     override fun onStop() {

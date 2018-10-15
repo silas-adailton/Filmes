@@ -5,8 +5,12 @@ import android.view.animation.GridLayoutAnimationController
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.*
+import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.textfield.TextInputLayout
+import com.oliveira.silas.cad.ui.main.MainActivity
+import com.oliveira.silas.cad.ui.main.MoviePageAdapter
 import com.oliveira.silas.cad.ui.main.movie.MovieAdapter
 import com.oliveira.silas.domain.user.User
 import com.oliveira.silas.cad.ui.main.user.UserAdapter
@@ -63,4 +67,25 @@ object bindAdapters {
 //            textInputLayout.error = string
 //        }
 //    }
+
+    @JvmStatic
+    @BindingAdapter("moviePageAdapter")
+    fun setSectionAdapter(viewPager: ViewPager, event: Int?) {
+        event?.let {
+            val fm = (viewPager.context as MainActivity).supportFragmentManager
+            viewPager.adapter = MoviePageAdapter(fm, it)
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("setupWithViewPager")
+    fun setupWithViewPager(tabLayout: TabLayout, viewPager: ViewPager) {
+        tabLayout.setupWithViewPager(viewPager)
+    }
+
+    @JvmStatic
+    @BindingAdapter("pageMargin")
+    fun setPageMargin(viewPager: ViewPager, margin: Float) {
+        viewPager.pageMargin = margin.toInt()
+    }
 }

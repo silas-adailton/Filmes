@@ -5,18 +5,14 @@ import com.oliveira.silas.domain.movies.Movie
 import com.oliveira.silas.domain.movies.interactor.GetPopularMoviesInteractor
 import io.reactivex.Maybe
 import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.CoreMatchers.notNullValue
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.ArgumentMatchers.any
 import org.mockito.ArgumentMatchers.nullable
 import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
-import org.mockito.internal.matchers.Any
 import org.mockito.junit.MockitoJUnitRunner
 
 @Suppress("IllegalIdentifier")
@@ -43,7 +39,7 @@ class MovieViewModelTest {
         `when`(getPopularMoviesInteractor.execute(nullable(GetPopularMoviesInteractor.Request::class.java))).thenReturn(Maybe.just(listMovie))
         movieViewModel.getPopularMoviesInteractor.Request(BuildConfig.API_KEY)
 
-        movieViewModel.loadMovies(BuildConfig.API_KEY)
+        movieViewModel.loadPopularMovies(BuildConfig.API_KEY)
 
         assertThat(movieViewModel.result, `is`(listMovie))
     }

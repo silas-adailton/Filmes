@@ -1,16 +1,18 @@
 package com.oliveira.silas.cad.ui.main.movie
 
+import android.util.Log
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import com.oliveira.silas.domain.movies.Movie
 import com.oliveira.silas.domain.movies.interactor.GetPopularMoviesInteractor
+import com.oliveira.silas.domain.movies.interactor.GetTopRateMoviesInteractor
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableMaybeObserver
 
-class MovieViewModel(val getPopularMoviesInteractor: GetPopularMoviesInteractor) : ViewModel() {
+class MovieViewModel(private val getPopularMoviesInteractor: GetPopularMoviesInteractor, private val getTopRateMoviesInteractor: GetTopRateMoviesInteractor) : ViewModel() {
     private val disposable = CompositeDisposable()
 
     val loading = ObservableBoolean()
@@ -19,10 +21,39 @@ class MovieViewModel(val getPopularMoviesInteractor: GetPopularMoviesInteractor)
     val empty = ObservableBoolean()
 
 
-    fun loadMovies(apiKey: String) = disposable.add(getUser(apiKey))
+    fun loadPopularMovies(apiKey: String) = disposable.add(getPopularMovies(apiKey))
+    fun loadTopRateMovies(apiKey: String) = disposable.add(getTopRateMovies(apiKey))
 
-    private fun getUser(apiKey: String): Disposable {
+    private fun getPopularMovies(apiKey: String): Disposable {
         return getPopularMoviesInteractor.execute(getPopularMoviesInteractor.Request(apiKey))
+                .subscribeWith(object : DisposableMaybeObserver<List<Movie>>() {
+
+                    override fun onStart() {
+                        loading.set(true)
+                    }
+
+                    override fun onSuccess(movie: List<Movie>) {
+                        loading.set(false)
+                        result.clear()
+                        result.addAll(movie)
+                        Log.d("TESTE", "" + movie)
+                    }
+
+                    override fun onComplete() {
+
+                    }
+
+                    override fun onError(e: Throwable) {
+                        loading.set(false)
+
+                        Log.d("TESTE", e.message)
+                    }
+
+                })
+    }
+
+    private fun getTopRateMovies(apiKey: String): Disposable {
+        return getTopRateMoviesInteractor.execute(getTopRateMoviesInteractor.Request(apiKey))
                 .subscribeWith(object : DisposableMaybeObserver<List<Movie>>() {
 
                     override fun onStart() {
