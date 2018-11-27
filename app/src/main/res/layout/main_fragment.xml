@@ -9,9 +9,9 @@
             name="userViewModel"
             type="com.oliveira.silas.cad.ui.main.user.UserViewModel" />
 
-        <variable
-            name="viewAdapter"
-            type="com.oliveira.silas.cad.ui.main.user.UserAdapter.ViewHolder" />
+        <!--<variable-->
+            <!--name="viewAdapter"-->
+            <!--type="com.oliveira.silas.cad.ui.main.user.UserAdapter.ViewHolder" />-->
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

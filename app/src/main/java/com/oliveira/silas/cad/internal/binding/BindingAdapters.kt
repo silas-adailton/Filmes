@@ -1,20 +1,18 @@
-package com.oliveira.silas.cad.binding
+package com.oliveira.silas.cad.internal.binding
 
 import android.view.View
-import android.view.animation.GridLayoutAnimationController
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.*
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.textfield.TextInputLayout
 import com.oliveira.silas.cad.ui.main.MainActivity
-import com.oliveira.silas.cad.ui.main.MoviePageAdapter
-import com.oliveira.silas.cad.ui.main.movie.MovieAdapter
-import com.oliveira.silas.domain.user.User
-import com.oliveira.silas.cad.ui.main.user.UserAdapter
+import com.oliveira.silas.cad.ui.main.movie.adapter.MovieAdapter
+import com.oliveira.silas.cad.ui.main.movie.adapter.MoviePageAdapter
 import com.oliveira.silas.domain.movies.Movie
+import com.oliveira.silas.domain.user.User
 
 object bindAdapters {
     @JvmStatic
@@ -23,7 +21,7 @@ object bindAdapters {
 //        recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
 //        recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL))
         recyclerView.setHasFixedSize(true)
-        recyclerView.adapter = UserAdapter(listUser)
+//        recyclerView.adapter = UserAdapter(listUser)
     }
 
     @JvmStatic
@@ -73,7 +71,7 @@ object bindAdapters {
     fun setSectionAdapter(viewPager: ViewPager, event: Int?) {
         event?.let {
             val fm = (viewPager.context as MainActivity).supportFragmentManager
-            viewPager.adapter = MoviePageAdapter(fm, it)
+            viewPager.adapter = MoviePageAdapter(fm)
         }
     }
 

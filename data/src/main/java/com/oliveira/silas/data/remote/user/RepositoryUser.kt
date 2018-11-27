@@ -8,6 +8,7 @@ import com.oliveira.silas.domain.user.Repository
 import com.oliveira.silas.domain.user.User
 import io.reactivex.Maybe
 
+@Suppress("UNREACHABLE_CODE")
 class RepositoryUser(private var databaseReference: DatabaseReference) : Repository {
     private  val listUser: MutableList<User> = mutableListOf()
     private var throwable: Throwable? = null

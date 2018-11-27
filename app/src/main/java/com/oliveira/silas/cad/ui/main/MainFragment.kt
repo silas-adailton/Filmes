@@ -8,13 +8,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.oliveira.silas.cad.BuildConfig
 import com.oliveira.silas.cad.R
 import com.oliveira.silas.cad.databinding.MainFragmentBinding
-import com.oliveira.silas.cad.ui.main.movie.MovieViewModel
-import com.oliveira.silas.domain.user.User
-import com.oliveira.silas.cad.ui.main.user.UserAdapter
 import com.oliveira.silas.cad.ui.main.user.UserViewModel
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.main_fragment.*
@@ -22,7 +17,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 
 class MainFragment : Fragment() {
-    private lateinit var viewAdapter: RecyclerView.Adapter<UserAdapter.ViewHolder>
+//    private lateinit var viewAdapter: RecyclerView.Adapter<UserAdapter.ViewHolder>
     private val disposable = CompositeDisposable()
     private lateinit var  bind: MainFragmentBinding
 
@@ -37,7 +32,7 @@ class MainFragment : Fragment() {
                               savedInstanceState: Bundle?): View {
 
         bind = DataBindingUtil.inflate(inflater, R.layout.main_fragment, container, false)
-        bind.userViewModel = userViewModel
+//        bind.userViewModel = userViewModel
 
         return bind.root
 
@@ -58,7 +53,7 @@ class MainFragment : Fragment() {
     private fun getUsers() {
 
 //        disposable.add(userViewModel.getUser()!!)
-        userViewModel.getUser()
+//        userViewModel.getUser()
 //        userViewModel.get()
 //            showUsers(it)
 
@@ -70,10 +65,10 @@ class MainFragment : Fragment() {
         recyclerview_user.addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
     }
 
-    private fun showUsers(it: List<User>) {
-        viewAdapter = UserAdapter(it)
-        recyclerview_user.adapter = viewAdapter
-    }
+//    private fun showUsers(it: List<User>) {
+//        viewAdapter = UserAdapter(it)
+//        recyclerview_user.adapter = viewAdapter
+//    }
 
 //    private fun getMovies() {
 //        movieViewModel.loadPopularMovies(BuildConfig.API_KEY)

@@ -1,4 +1,4 @@
-package com.oliveira.silas.cad.ui.main
+package com.oliveira.silas.cad.ui.main.movie.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.oliveira.silas.cad.ui.main.movie.PopularFragment
 import com.oliveira.silas.cad.ui.main.movie.TopRateFragment
 
-class MoviePageAdapter(fm: FragmentManager, val movie : Int) : FragmentPagerAdapter(fm) {
+class MoviePageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
     private val items = arrayOf("Popular", "Top Rate")
     override fun getItem(position: Int): Fragment {
        return when(position) {
@@ -19,6 +19,6 @@ class MoviePageAdapter(fm: FragmentManager, val movie : Int) : FragmentPagerAdap
     override fun getCount() = items.size
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return items.get(position)
+        return items[position]
     }
 }

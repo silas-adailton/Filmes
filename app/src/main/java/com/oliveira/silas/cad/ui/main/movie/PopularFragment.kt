@@ -8,7 +8,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.oliveira.silas.cad.BuildConfig
 import com.oliveira.silas.cad.R
-import com.oliveira.silas.cad.databinding.ActivityMovieBinding
 import com.oliveira.silas.cad.databinding.FragmentPopularBinding
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -21,8 +20,7 @@ class PopularFragment : Fragment() {
 
         @JvmStatic
         fun newInstance(): PopularFragment {
-            val fragment = PopularFragment()
-            return fragment
+            return PopularFragment()
         }
     }
 

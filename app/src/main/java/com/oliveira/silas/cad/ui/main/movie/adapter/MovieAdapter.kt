@@ -1,4 +1,4 @@
-package com.oliveira.silas.cad.ui.main.movie
+package com.oliveira.silas.cad.ui.main.movie.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

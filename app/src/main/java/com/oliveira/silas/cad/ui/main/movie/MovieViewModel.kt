@@ -17,7 +17,7 @@ class MovieViewModel(private val getPopularMoviesInteractor: GetPopularMoviesInt
 
     val loading = ObservableBoolean()
     var result: MutableList<Movie> = ObservableArrayList<Movie>()
-    val error = ObservableField<String>()
+    val error = ObservableField<Throwable>()
     val empty = ObservableBoolean()
 
 
@@ -64,7 +64,6 @@ class MovieViewModel(private val getPopularMoviesInteractor: GetPopularMoviesInt
                         loading.set(false)
                         result.clear()
                         result.addAll(movie)
-//                        Log.d("TESTE", "" + movie)
                     }
 
                     override fun onComplete() {
@@ -73,8 +72,7 @@ class MovieViewModel(private val getPopularMoviesInteractor: GetPopularMoviesInt
 
                     override fun onError(e: Throwable) {
                         loading.set(false)
-
-//                        Log.d("TESTE", e.message)
+                        error.set(e)
                     }
 
                 })
