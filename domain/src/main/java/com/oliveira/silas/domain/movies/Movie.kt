@@ -12,4 +12,9 @@ data class Movie (
         val video: Boolean,
         val voteAverage: Float,
         val voteCount: Int
-)
+) {
+    var totalPages: Int = 0
+    var totalResults: Int = 0
+    var page: Int = 0
+
+}

@@ -1,17 +1,18 @@
 package com.oliveira.silas.cad.di
 
+import android.content.Context
 import com.oliveira.silas.cad.Constants
 import com.oliveira.silas.cad.ui.main.movie.MovieViewModel
 import com.oliveira.silas.cad.ui.main.user.UserViewModel
+import com.oliveira.silas.data.local.PreferencesRepository
 import com.oliveira.silas.data.remote.movie.RepositoryRemoteMoviePopular
 import com.oliveira.silas.data.remote.movie.RepositoryRemoteMovieTopRate
 import com.oliveira.silas.data.remote.movie.mapper.MovieMapper
-import com.oliveira.silas.data.remote.user.RepositoryUser
+import com.oliveira.silas.domain.Preferences
 import com.oliveira.silas.domain.movies.RepositoryMovies
 import com.oliveira.silas.domain.movies.interactor.GetPopularMoviesInteractor
 import com.oliveira.silas.domain.movies.interactor.GetTopRateMoviesInteractor
-import com.oliveira.silas.domain.user.Repository
-import com.oliveira.silas.domain.user.interactor.UserInteractor
+import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.Module
 import org.koin.dsl.module.module
@@ -26,6 +27,8 @@ val repositoryModule: Module = module {
     single { MovieMapper() }
     single("popular"){ RepositoryRemoteMoviePopular(get(), get()) as RepositoryMovies }
     single("topRate") { RepositoryRemoteMovieTopRate(get(), get()) as RepositoryMovies }
+    single { androidContext().getSharedPreferences("com.oliveira.silas.cad",Context.MODE_PRIVATE) }
+    single<Preferences> { PreferencesRepository(get()) }
 }
 
 val viewModelModule: Module = module {
@@ -36,7 +39,7 @@ val viewModelModule: Module = module {
 
 val interactorModule: Module = module {
 //    single { UserInteractor(get()) }
-    single { GetPopularMoviesInteractor(get("popular")) }
+    single { GetPopularMoviesInteractor(get("popular"), get()) }
     single { GetTopRateMoviesInteractor(get("topRate")) }
 
 }

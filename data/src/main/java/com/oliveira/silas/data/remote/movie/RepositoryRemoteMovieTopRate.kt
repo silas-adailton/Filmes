@@ -5,15 +5,18 @@ import com.oliveira.silas.domain.movies.Movie
 import com.oliveira.silas.domain.movies.RepositoryMovies
 import com.oliveira.silas.data.retrofit.ServiceRetrofit
 import io.reactivex.Maybe
-import io.reactivex.observers.DisposableMaybeObserver
 import retrofit2.Retrofit
 
 class RepositoryRemoteMovieTopRate(private val retrofit: Retrofit, private val movieMapper: MovieMapper) : RepositoryMovies {
+    override fun getInfoPages(apiKey: String): Maybe<Movie> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override fun getMovies(apiKey: String): Maybe<List<Movie>> {
         val serviceRetrofit = retrofit.create(ServiceRetrofit::class.java)
 
         return serviceRetrofit.getTopRatedMovies(apiKey)
-                .map { movieMapper.toModel(it) }
+                .map { movieMapper.toListModel(it) }
     }
 
 

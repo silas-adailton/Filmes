@@ -5,7 +5,7 @@ import com.oliveira.silas.domain.movies.Movie
 
 class MovieMapper {
 
-    fun toModel(movieResponse: MovieResponse): List<Movie> {
+    fun toListModel(movieResponse: MovieResponse): List<Movie> {
 
         val listMovies: MutableList<Movie> = mutableListOf()
 
@@ -20,5 +20,15 @@ class MovieMapper {
 
         return listMovies
     }
+
+    fun toModel(movieResponse: MovieResponse):Movie? {
+        val movie: Movie? = null
+        movie?.page = movieResponse.page
+        movie?.totalPages = movieResponse.totalPages
+        movie?.totalResults = movieResponse.totalResults
+        
+        return movie
+    }
+
 
 }
