@@ -26,7 +26,7 @@ class MovieMapper {
         movie?.page = movieResponse.page
         movie?.totalPages = movieResponse.totalPages
         movie?.totalResults = movieResponse.totalResults
-        
+
         return movie
     }
 
