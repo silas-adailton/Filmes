@@ -1,20 +1,25 @@
 package com.oliveira.silas.cad.internal.binding
 
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.oliveira.silas.cad.ui.main.MainActivity
+import com.oliveira.silas.cad.ui.main.movie.MovieActivity
+import com.oliveira.silas.cad.ui.main.movie.MovieViewModel
 import com.oliveira.silas.cad.ui.main.movie.adapter.MovieAdapter
 import com.oliveira.silas.cad.ui.main.movie.adapter.MoviePageAdapter
 import com.oliveira.silas.domain.movies.Movie
 import com.oliveira.silas.domain.user.User
 
 object bindAdapters {
+
     @JvmStatic
     @BindingAdapter("loadRecyclerView")
     fun loadRecyclerView(recyclerView: RecyclerView, listUser: List<User>) {
@@ -25,15 +30,41 @@ object bindAdapters {
     }
 
     @JvmStatic
-    @BindingAdapter("loadRecyclerViewMovies")
-    fun loadRecyclerViewMovies(recyclerView: RecyclerView, listMovies: List<Movie>) {
-        recyclerView.layoutManager = StaggeredGridLayoutManager(2,1)
+    @BindingAdapter(value=["android:loadRecyclerViewMovies", "android:viewModel"], requireAll = true)
+    fun loadRecyclerViewMovies(recyclerView: RecyclerView, listMovies: List<Movie>, movieViewModel: MovieViewModel) {
+        var loading = false
+        val layoutManager = LinearLayoutManager(recyclerView.context)
+//        recyclerView.layoutManager = StaggeredGridLayoutManager(2,1)
+//        recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
+        recyclerView.layoutManager = layoutManager
 //        recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL))
         recyclerView.setHasFixedSize(true)
 
 
 //        viewAdapter = MovieAdapter(listMovies!!)
         recyclerView.adapter = MovieAdapter(listMovies)
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                val visibleItemCount = recyclerView.childCount
+                val itemCount = layoutManager.itemCount
+                val firstItemPosition = layoutManager.findFirstVisibleItemPosition()
+                val lastItemPosition = layoutManager.findLastCompletelyVisibleItemPosition()
+
+                Log.d("TESTE", "visibleItemCount: $visibleItemCount " +
+                        "itemCount: $itemCount firstItemPosition: $firstItemPosition lastItemPosition: $lastItemPosition")
+
+                if (!loading && (firstItemPosition + visibleItemCount >= itemCount)) {
+                    loading = true
+
+                    Toast.makeText(recyclerView.context, "Fim da Lista", Toast.LENGTH_SHORT).show()
+                }
+
+
+            }
+        })
     }
 
     @JvmStatic
@@ -85,5 +116,11 @@ object bindAdapters {
     @BindingAdapter("pageMargin")
     fun setPageMargin(viewPager: ViewPager, margin: Float) {
         viewPager.pageMargin = margin.toInt()
+    }
+
+    interface Testsss {
+
+        fun loadMore()
+
     }
 }

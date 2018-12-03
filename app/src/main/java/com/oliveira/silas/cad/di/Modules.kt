@@ -39,7 +39,7 @@ val viewModelModule: Module = module {
 
 val interactorModule: Module = module {
 //    single { UserInteractor(get()) }
-    single { GetPopularMoviesInteractor(get("popular"), get()) }
+    single { GetPopularMoviesInteractor(get("popular")) }
     single { GetTopRateMoviesInteractor(get("topRate")) }
 
 }
