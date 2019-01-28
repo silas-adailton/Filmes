@@ -8,11 +8,6 @@ import com.oliveira.silas.domain.user.User
 import com.oliveira.silas.domain.user.interactor.UserInteractor
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableMaybeObserver
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.delay
-import kotlinx.coroutines.experimental.launch
-import kotlinx.coroutines.experimental.withContext
 
 class UserViewModel(val userInteractor: UserInteractor) : ViewModel(), Observable {
 
@@ -80,32 +75,32 @@ class UserViewModel(val userInteractor: UserInteractor) : ViewModel(), Observabl
 
     }
 
-    fun get() {
-
-        launch(UI) {
-
-            try {
-                loading.set(true)
-
-                result = async { userInteractor.getUserssssss() }.await()
-                updateUi(result)
-                delay(2000L)
-                loading.set(false)
-
-
-            } catch (e: Exception) {
-                Log.e("TESTE", e.message)
-            }
-        }
-    }
-
-    suspend private fun updateUi(list: MutableList<User>) {
-        withContext(UI) {
-
-            result.clear()
-            result = list
-        }
-    }
+//    fun get() {
+//
+//        launch(UI) {
+//
+//            try {
+//                loading.set(true)
+//
+//                result = async { userInteractor.getUserssssss() }.await()
+//                updateUi(result)
+//                delay(2000L)
+//                loading.set(false)
+//
+//
+//            } catch (e: Exception) {
+//                Log.e("TESTE", e.message)
+//            }
+//        }
+//    }
+//
+//    suspend private fun updateUi(list: MutableList<User>) {
+//        withContext(UI) {
+//
+//            result.clear()
+//            result = list
+//        }
+//    }
 
     fun notifyChange() {
         callbacks.notifyCallbacks(this, BR._all, null)

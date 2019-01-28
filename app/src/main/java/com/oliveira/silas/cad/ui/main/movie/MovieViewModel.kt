@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.oliveira.silas.domain.movies.Movie
 import com.oliveira.silas.domain.movies.interactor.GetPopularMoviesInteractor
@@ -17,8 +19,10 @@ class MovieViewModel(private val getPopularMoviesInteractor: GetPopularMoviesInt
 
     val loading = ObservableBoolean()
     var result: MutableList<Movie> = ObservableArrayList<Movie>()
+    var resultData: MutableLiveData<List<Movie>> = MutableLiveData()
     val error = ObservableField<Throwable>()
     val empty = ObservableBoolean()
+    val res = resultData
 
 
     fun loadPopularMovies(apiKey: String) = disposable.add(getPopularMovies(apiKey))
@@ -36,6 +40,7 @@ class MovieViewModel(private val getPopularMoviesInteractor: GetPopularMoviesInt
                         loading.set(false)
                         result.clear()
                         result.addAll(movie)
+                        resultData.value = movie
                         Log.d("TESTE", "" + movie)
                     }
 
@@ -64,6 +69,7 @@ class MovieViewModel(private val getPopularMoviesInteractor: GetPopularMoviesInt
                         loading.set(false)
                         result.clear()
                         result.addAll(movie)
+                        resultData.value = movie
                     }
 
                     override fun onComplete() {

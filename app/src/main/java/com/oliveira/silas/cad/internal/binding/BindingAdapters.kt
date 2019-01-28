@@ -30,8 +30,8 @@ object bindAdapters {
     }
 
     @JvmStatic
-    @BindingAdapter(value=["android:loadRecyclerViewMovies", "android:viewModel"], requireAll = true)
-    fun loadRecyclerViewMovies(recyclerView: RecyclerView, listMovies: List<Movie>, movieViewModel: MovieViewModel) {
+    @BindingAdapter("android:loadRecyclerViewMovies")
+    fun loadRecyclerViewMovies(recyclerView: RecyclerView, listMovies: List<Movie>) {
         var loading = false
         val layoutManager = LinearLayoutManager(recyclerView.context)
 //        recyclerView.layoutManager = StaggeredGridLayoutManager(2,1)
