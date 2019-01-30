@@ -18,7 +18,7 @@ class RepositoryRemoteMoviePopular(private val retrofit: Retrofit, private val m
                 .map{res ->  Movie(
                         res.adult, res.backdrop_path,
                         res.id, res.original_title,
-                        res.release_date, res.poster_path,
+                        res.release_date, res.overview,res.poster_path,
                         res.popularity, res.original_title!!,
                         res.video, res.vote_average, res.vote_count)}
                 .toList()

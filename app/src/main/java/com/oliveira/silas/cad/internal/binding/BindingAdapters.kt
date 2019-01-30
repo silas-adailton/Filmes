@@ -3,6 +3,7 @@ package com.oliveira.silas.cad.internal.binding
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.Toast
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -71,7 +72,7 @@ object bindAdapters {
     @BindingAdapter("imageUrl")
     fun ImageView.setImageUrl(imageUrl: String?) {
         Glide.with(this)
-                .load("https://image.tmdb.org/t/p/w500/$imageUrl")
+                .load("https://image.tmdb.org/t/p/original/$imageUrl")
                 .into(this)
     }
 
@@ -85,6 +86,14 @@ object bindAdapters {
     @BindingAdapter("loading")
     fun loading(view: View, value: Boolean) {
         view.visibility = if (value) View.VISIBLE else View.GONE
+    }
+
+    @JvmStatic
+    @BindingAdapter("rating")
+    fun setRating(ratingBar: RatingBar, value: Float) {
+
+        if (ratingBar.rating != value)
+            ratingBar.rating = value
     }
 
 //    @JvmStatic

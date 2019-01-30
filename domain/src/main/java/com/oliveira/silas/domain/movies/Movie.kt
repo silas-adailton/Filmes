@@ -6,6 +6,7 @@ data class Movie (
         val id: Int,
         val originalTitle: String?,
         val releaseDate: String,
+        val overview: String,
         val posterPath: String?,
         val popularity: Float?,
         val title: String,

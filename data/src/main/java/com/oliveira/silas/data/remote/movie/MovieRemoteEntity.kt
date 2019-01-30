@@ -8,6 +8,7 @@ data class MovieRemoteEntity(
         @SerializedName("id") val id: Int,
         @SerializedName("original_title") val original_title: String?,
         @SerializedName("release_date") var release_date: String,
+        @SerializedName("overview") var overview: String,
         @SerializedName("poster_path") val poster_path: String?,
         @SerializedName("popularity") val popularity: Float?,
         @SerializedName("title") val title: String,
