@@ -1,34 +1,22 @@
 package com.oliveira.silas.cad.binding
 
 import android.view.View
-import android.view.animation.GridLayoutAnimationController
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.*
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
 import com.oliveira.silas.cad.ui.main.movie.MovieAdapter
-import com.oliveira.silas.domain.user.User
-import com.oliveira.silas.cad.ui.main.user.UserAdapter
 import com.oliveira.silas.domain.movies.Movie
 
 object bindAdapters {
-    @JvmStatic
-    @BindingAdapter("loadRecyclerView")
-    fun loadRecyclerView(recyclerView: RecyclerView, listUser: List<User>?) {
-        val viewAdapter: RecyclerView.Adapter<UserAdapter.ViewHolder>
-        recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
-        recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL))
-        recyclerView.setHasFixedSize(true)
-
-        viewAdapter = UserAdapter(listUser!!)
-        recyclerView.adapter = viewAdapter
-    }
 
     @JvmStatic
     @BindingAdapter("loadRecyclerViewMovies")
     fun loadRecyclerViewMovies(recyclerView: RecyclerView, listMovies: List<Movie>?) {
         val viewAdapter: RecyclerView.Adapter<MovieAdapter.ViewHolder>
-        recyclerView.layoutManager = StaggeredGridLayoutManager(2,1)
+        recyclerView.layoutManager = StaggeredGridLayoutManager(2, 1)
         recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL))
         recyclerView.setHasFixedSize(true)
 

@@ -2,10 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.oliveira.silas.cad">
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -17,11 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity
-            android:name=".ui.main.user.LoginActivity"
-            android:label="@string/title_activity_login">
-        </activity>
-        <activity android:name=".MainActivity"/>
         <activity android:name=".ui.main.movie.MovieActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,5 +22,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

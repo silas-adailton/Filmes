@@ -1,14 +1,12 @@
 package com.oliveira.silas.cad.ui.main.movie
 
 import android.util.Log
-import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import com.oliveira.silas.domain.movies.Movie
 import com.oliveira.silas.domain.movies.interactor.GetPopularMoviesInteractor
-import com.oliveira.silas.domain.user.User
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableMaybeObserver
