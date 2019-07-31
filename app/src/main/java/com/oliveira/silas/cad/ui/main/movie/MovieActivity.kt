@@ -7,7 +7,9 @@ import com.oliveira.silas.cad.BuildConfig
 import com.oliveira.silas.cad.R
 import com.oliveira.silas.cad.databinding.ActivityMovieBinding
 import org.koin.android.ext.android.inject
-
+/**
+*@author Silas
+*/
 class MovieActivity : AppCompatActivity() {
 
     private lateinit var bind: ActivityMovieBinding
