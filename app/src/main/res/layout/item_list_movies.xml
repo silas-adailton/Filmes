@@ -6,7 +6,7 @@
 
         <variable
             name="movie"
-            type="com.oliveira.silas.domain.movies.Movie" />
+            type="br.com.oliveira.silas.movies.domain.Movie" />
     </data>
 
     <androidx.cardview.widget.CardView

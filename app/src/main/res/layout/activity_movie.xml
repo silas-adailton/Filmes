@@ -7,14 +7,14 @@
         <import type="android.view.View"/>
         <variable
             name="viewModel"
-            type="com.oliveira.silas.cad.ui.main.movie.MovieViewModel" />
+            type="br.com.oliveira.silas.movies.ui.main.movie.MovieViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/movieLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.main.movie.MovieActivity">
+        tools:context="br.com.oliveira.silas.movies.ui.main.movie.MovieActivity">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview_movie"

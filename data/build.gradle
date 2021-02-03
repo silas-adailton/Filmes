@@ -2,16 +2,18 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
+def cfg = rootProject.ext.configuration
+def libs = rootProject.ext.libraries
+def test = rootProject.ext.testingLibraries
 android {
-    def ext = rootProject.extensions.ext
-    compileSdkVersion ext.android.compileSdkVersion
+    compileSdkVersion cfg.compileSdkVersion
 
     defaultConfig {
 
-        minSdkVersion ext.android.minSdkVersion
-        targetSdkVersion ext.android.targetSdkVersion
-        versionCode ext.android.versionCode
-        versionName ext.android.versionName
+        minSdkVersion cfg.minSdkVersion
+        targetSdkVersion cfg.targetSdkVersion
+        versionCode cfg.versionCode
+        versionName cfg.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -29,8 +31,19 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    kapt "android.arch.persistence.room:compiler:$libs.room_version"
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "android.arch.persistence.room:rxjava2:$libs.room_version"
+    implementation "android.arch.persistence.room:guava:$libs.room_version"
+    implementation  "android.arch.persistence.room:testing:$libs.room_version"
+    implementation "com.squareup.retrofit2:retrofit:$libs.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$libs.gson"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$libs.retrofitAdapter"
+
+    testImplementation "junit:junit:$test.junitVersion"
+    implementation "org.mockito:mockito-core:$test.mockitoVersion"
+////            "com.squareup.okhttp3:mockwebserver:$okHttpVersion"
+
     implementation project(path: ':domain')
-    kapt dataKaptDependencies
-    api dataDependencies
-    testImplementation dataTestDependencies
 }

@@ -2,16 +2,18 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
+def cfg = rootProject.ext.configuration
+def libs = rootProject.ext.libraries
+def test = rootProject.ext.testingLibraries
 android {
-    def ext = rootProject.extensions.ext
-    compileSdkVersion ext.android.compileSdkVersion
+    compileSdkVersion cfg.compileSdkVersion
 
     defaultConfig {
 
-        minSdkVersion ext.android.minSdkVersion
-        targetSdkVersion ext.android.targetSdkVersion
-        versionCode ext.android.versionCode
-        versionName ext.android.versionName
+        minSdkVersion cfg.minSdkVersion
+        targetSdkVersion cfg.targetSdkVersion
+        versionCode cfg.versionCode
+        versionName cfg.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -29,7 +31,12 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation domainDependencies
-    testImplementation domainTestDependencies
-//    implementation project(path: ':data')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$libs.rxandroidVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$libs.rxAndroidVersion"
+    implementation "io.reactivex.rxjava2:rxjava:$libs.rxjavaVersion"
+    implementation "com.squareup.retrofit2:retrofit:$libs.retrofit"
+
+    testImplementation "junit:junit:$test.junitVersion"
+    implementation "org.mockito:mockito-core:$test.mockitoVersion"
 }
