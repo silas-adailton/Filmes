@@ -1,17 +1,15 @@
 package br.com.oliveira.silas.movies.domain
 
 import io.reactivex.Maybe
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 
-abstract class InteractorMaybe<T, R : InteractorMaybe.Request> {
+abstract class InteractorMaybe<T, R> internal constructor(private val schedulers: Schedulers) {
 
     protected abstract fun create(request: R): Maybe<T>
 
     fun execute(request: R): Maybe<T> {
         return create(request)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(schedulers.subscribeOn)
+                .observeOn(schedulers.observeOn)
 
     }
 

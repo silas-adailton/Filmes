@@ -5,7 +5,9 @@ import br.com.oliveira.silas.movies.ui.main.movie.MovieViewModel
 import br.com.oliveira.silas.movies.data.remote.movie.RepositoryRemoteMovie
 import br.com.oliveira.silas.movies.data.remote.movie.mapper.MovieMapper
 import br.com.oliveira.silas.movies.domain.RepositoryMovies
+import br.com.oliveira.silas.movies.domain.Schedulers
 import br.com.oliveira.silas.movies.domain.interactor.GetPopularMoviesInteractor
+import br.com.oliveira.silas.movies.util.scheduler.AppScheduler
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -24,7 +26,8 @@ val viewModelModule: Module = module {
 
 
 val interactorModule: Module = module {
-    single { GetPopularMoviesInteractor(get()) }
+    single<Schedulers> { AppScheduler() }
+    single { GetPopularMoviesInteractor(get(), get()) }
 
 }
 

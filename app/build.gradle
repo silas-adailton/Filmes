@@ -39,6 +39,10 @@ android {
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
     }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 
@@ -72,16 +76,10 @@ dependencies {
     //Tests
     testImplementation "junit:junit:$test.junitVersion"
     implementation "org.mockito:mockito-core:$test.mockitoVersion"
+    testImplementation 'android.arch.core:core-testing:1.1.1'
 
-    implementation "com.android.support.test.espresso:espresso-core:$test.espressoVersion"
-    implementation "com.android.support:support-annotations:$test.supportLibraryVersion"
-    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.3.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    androidTestImplementation 'androidx.test:runner:1.3.0'
-    androidTestImplementation 'androidx.test:rules:1.3.0'
-
-    implementation 'androidx.test:runner:1.3.1-alpha03'
-    implementation 'androidx.test.espresso:espresso-core:3.4.0-alpha03'
+    testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0-RC3'
+//    testImplementation 'org.mockito:mockito-inline:2.8.47'
 
     implementation project(':domain')
     implementation project(':data')

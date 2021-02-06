@@ -11,11 +11,11 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableMaybeObserver
 
-class MovieViewModel(val getPopularMoviesInteractor: GetPopularMoviesInteractor) : ViewModel() {
+class MovieViewModel(private val getPopularMoviesInteractor: GetPopularMoviesInteractor) : ViewModel() {
     private val disposable = CompositeDisposable()
 
     val loading = ObservableBoolean()
-    var result: MutableList<Movie> = ObservableArrayList<Movie>()
+    var result: MutableList<Movie> = ObservableArrayList()
     val error = ObservableField<String>()
     val empty = ObservableBoolean()
 
@@ -43,6 +43,7 @@ class MovieViewModel(val getPopularMoviesInteractor: GetPopularMoviesInteractor)
 
                     override fun onError(e: Throwable) {
                         loading.set(false)
+                        error.set(e.toString())
 
                         Log.d("TESTE", e.message)
                     }
