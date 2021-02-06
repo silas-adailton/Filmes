@@ -1,4 +1,4 @@
-package br.com.oliveira.silas.movies
+package br.com.oliveira.silas.movies.data
 
 class Constants {
     companion object {
