@@ -20,9 +20,9 @@ class MovieViewModel(private val getPopularMoviesInteractor: GetPopularMoviesInt
     val empty = ObservableBoolean()
 
 
-    fun loadMovies(apiKey: String) = disposable.add(getUser(apiKey))
+    fun loadMovies(apiKey: String) = disposable.add(getMovies(apiKey))
 
-    private fun getUser(apiKey: String): Disposable {
+    private fun getMovies(apiKey: String): Disposable {
         return getPopularMoviesInteractor.execute(getPopularMoviesInteractor.Request(apiKey))
                 .subscribeWith(object : DisposableMaybeObserver<List<Movie>>() {
 

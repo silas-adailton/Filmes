@@ -8,8 +8,8 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-class ServiceRetrofitImpl() : ServiceRetrofit {
-    private var serviceRetrofit: ServiceRetrofit
+class ServiceRetrofitImpl(val apiKey: String) : ServiceRetrofit {
+   private var serviceRetrofit: ServiceRetrofit
 
     init {
         val retrofit = Retrofit.Builder()
@@ -17,14 +17,15 @@ class ServiceRetrofitImpl() : ServiceRetrofit {
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
+
      serviceRetrofit = retrofit.create(ServiceRetrofit::class.java)
     }
 
     override fun getMovies(apiKey: String): Maybe<MovieRemoteEntity> {
-        return serviceRetrofit.getMovies(apiKey)
+        return serviceRetrofit.getMovies(this.apiKey)
     }
 
     override fun getMoviesPopular(apiKey: String): Maybe<MovieResponse> {
-        return serviceRetrofit.getMoviesPopular(apiKey)
+        return serviceRetrofit.getMoviesPopular(this.apiKey)
     }
 }

@@ -8,16 +8,12 @@ import br.com.oliveira.silas.movies.data.retrofit.ServiceRetrofitImpl
 import io.reactivex.Maybe
 import retrofit2.Retrofit
 
-class RepositoryRemoteMovie(private val movieMapper: MovieMapper, private val serviceRetrofitImpl: ServiceRetrofitImpl) : RepositoryMovies {
+class RepositoryRemoteMovie(
+        private val movieMapper: MovieMapper,
+        val serviceRetrofitImpl: ServiceRetrofitImpl) : RepositoryMovies {
     override fun getMovies(apiKey: String): Maybe<List<Movie>> {
-//        val serviceRetrofit = retrofit.create(ServiceRetrofit::class.java)
-
-        return serviceRetrofitImpl.getMoviesPopular(apiKey)
+        return serviceRetrofitImpl.getMoviesPopular(serviceRetrofitImpl.apiKey)
                 .map { movieMapper.toModel(it) }
-
-//        return serviceRetrofit.getMoviesPopular(apiKey)
-//                .map { movieMapper.toModel(it) }
     }
-
 
 }

@@ -15,7 +15,7 @@ import org.mockito.Mockito.anyString
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 
-//@RunWith(MockitoJUnitRunner::class)
+@RunWith(MockitoJUnitRunner::class)
 class RepositoryRemoteMovieTest {
 
     @Mock
@@ -28,20 +28,35 @@ class RepositoryRemoteMovieTest {
 
     @Before
     fun setUp() {
-//        MockitoAnnotations.initMocks(this)
         repositoryRemoteMovie = RepositoryRemoteMovie(mapper, serviceRetrofitImpl)
     }
 
 
     @Test
     fun `Should return a list of movies from api when call is successful`() {
-        val list = MockMovies.getListMovies()
-        `when`(repositoryRemoteMovie.getMovies(anyString())).thenReturn(Maybe.just(list))
-        val result = repositoryRemoteMovie.getMovies(anyString()).test()
+        val movieEntityResponse = MockMovies.getMovieEntityRemote()
+
+        `when`(repositoryRemoteMovie.serviceRetrofitImpl.getMovies(anyString())).thenReturn(Maybe.just(movieEntityResponse))
+        val result = repositoryRemoteMovie.serviceRetrofitImpl.getMovies(anyString())
+                .test()
 
         result
                 .assertNoErrors()
                 .assertComplete()
-                .assertValue(list)
+                .assertValue(movieEntityResponse)
+    }
+
+    @Test
+    fun `Should return an exception from api when call is unsuccessful`() {
+        val exception = Exception()
+
+        `when`(repositoryRemoteMovie.serviceRetrofitImpl.getMovies(anyString())).thenReturn(Maybe.error(exception))
+
+        val result = repositoryRemoteMovie.serviceRetrofitImpl.getMovies(anyString()).test()
+
+        result
+                .assertNotComplete()
+                .assertNoValues()
+                .assertError(exception)
     }
 }
