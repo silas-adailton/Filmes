@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.oliveira.silas.movies.R
 import br.com.oliveira.silas.movies.databinding.ItemListMoviesBinding
 import br.com.oliveira.silas.movies.domain.Movie
+import java.util.ArrayList
 
 class MovieAdapter(private val listMovies: List<Movie>): RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -22,7 +23,7 @@ class MovieAdapter(private val listMovies: List<Movie>): RecyclerView.Adapter<Mo
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.movie = listMovies.get(position)
+        holder.binding.movie = listMovies[position]
         holder.binding.executePendingBindings()
     }
 

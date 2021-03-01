@@ -12,13 +12,15 @@ class GetPopularMoviesInteractor(
         InteractorMaybe<List<Movie>, GetPopularMoviesInteractor.Request>(schedulers) {
 
     override fun create(request: Request): Maybe<List<Movie>> {
-        return repositoryMovies.getMovies(request.getApiKey())
+        return repositoryMovies.getMovies(request.getApiKey(), request.getPage())
     }
 
 
-    inner class Request(private var api_key: String) : InteractorMaybe.Request() {
+    inner class Request(private val api_key: String, private val page: Int) : InteractorMaybe.Request() {
         fun getApiKey(): String {
             return api_key
         }
+
+        fun getPage() = page
     }
 }

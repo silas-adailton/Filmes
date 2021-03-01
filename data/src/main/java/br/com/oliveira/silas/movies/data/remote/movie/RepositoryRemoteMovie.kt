@@ -11,8 +11,8 @@ import retrofit2.Retrofit
 class RepositoryRemoteMovie(
         private val movieMapper: MovieMapper,
         val serviceRetrofitImpl: ServiceRetrofitImpl) : RepositoryMovies {
-    override fun getMovies(apiKey: String): Maybe<List<Movie>> {
-        return serviceRetrofitImpl.getMoviesPopular(serviceRetrofitImpl.apiKey)
+    override fun getMovies(apiKey: String, page: Int): Maybe<List<Movie>> {
+        return serviceRetrofitImpl.getMoviesPopular(serviceRetrofitImpl.apiKey, page)
                 .map { movieMapper.toModel(it) }
     }
 

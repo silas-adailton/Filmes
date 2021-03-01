@@ -3,9 +3,10 @@ package br.com.oliveira.silas.movies.data.remote.movie
 import com.google.gson.annotations.SerializedName
 
 data class MovieRemoteEntity(
+        @SerializedName("id") val id: Int,
+        @SerializedName("page") val page: Int,
         @SerializedName("adult") var adult: Boolean,
         @SerializedName("backdrop_path") val backdrop_path: String?,
-        @SerializedName("id") val id: Int,
         @SerializedName("original_title") val original_title: String?,
         @SerializedName("release_date") var release_date: String,
         @SerializedName("poster_path") val poster_path: String?,

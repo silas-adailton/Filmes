@@ -9,8 +9,8 @@ import retrofit2.http.Query
 interface ServiceRetrofit {
 
     @GET("movie/popular")
-    fun getMovies(@Query("api_key") apiKey: String) : Maybe<MovieRemoteEntity>
+    fun getMovies(@Query("api_key") apiKey: String, @Query("page") page: Int) : Maybe<MovieRemoteEntity>
 
     @GET("movie/popular")
-    fun getMoviesPopular(@Query("api_key") apiKey: String) : Maybe<MovieResponse>
+    fun getMoviesPopular(@Query("api_key") apiKey: String, @Query("page") page: Int) : Maybe<MovieResponse>
 }

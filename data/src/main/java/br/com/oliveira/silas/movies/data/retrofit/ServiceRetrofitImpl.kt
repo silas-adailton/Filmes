@@ -21,11 +21,11 @@ class ServiceRetrofitImpl(val apiKey: String) : ServiceRetrofit {
      serviceRetrofit = retrofit.create(ServiceRetrofit::class.java)
     }
 
-    override fun getMovies(apiKey: String): Maybe<MovieRemoteEntity> {
-        return serviceRetrofit.getMovies(this.apiKey)
+    override fun getMovies(apiKey: String, page: Int): Maybe<MovieRemoteEntity> {
+        return serviceRetrofit.getMovies(this.apiKey, page)
     }
 
-    override fun getMoviesPopular(apiKey: String): Maybe<MovieResponse> {
-        return serviceRetrofit.getMoviesPopular(this.apiKey)
+    override fun getMoviesPopular(apiKey: String, page: Int): Maybe<MovieResponse> {
+        return serviceRetrofit.getMoviesPopular(this.apiKey, page)
     }
 }
