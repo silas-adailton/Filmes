@@ -1,9 +1,10 @@
 package br.com.oliveira.silas.movies.domain
 
 data class Movie (
-        var adult: Boolean,
-        val backdropPath: String?,
         val id: Int,
+        val page: Int,
+        val adult: Boolean,
+        val backdropPath: String?,
         val originalTitle: String?,
         val releaseDate: String,
         val posterPath: String?,

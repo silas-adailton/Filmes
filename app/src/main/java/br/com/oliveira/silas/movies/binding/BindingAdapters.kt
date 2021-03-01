@@ -24,8 +24,8 @@ object BindAdapters {
 //        recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL))
         recyclerView.setHasFixedSize(true)
 
-        viewAdapter = MovieAdapter(listMovies!!)
-        recyclerView.adapter = viewAdapter
+//        viewAdapter = MovieAdapter(listMovies!!)
+//        recyclerView.adapter = viewAdapter
     }
 
     @JvmStatic

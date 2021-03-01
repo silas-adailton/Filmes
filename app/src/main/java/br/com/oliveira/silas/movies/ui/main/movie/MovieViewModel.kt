@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.oliveira.silas.movies.domain.Movie
 import br.com.oliveira.silas.movies.domain.interactor.GetPopularMoviesInteractor
@@ -16,14 +17,15 @@ class MovieViewModel(private val getPopularMoviesInteractor: GetPopularMoviesInt
 
     val loading = ObservableBoolean()
     var result: MutableList<Movie> = ObservableArrayList()
+    var resultLiveData = MutableLiveData<List<Movie>>()
     val error = ObservableField<String>()
     val empty = ObservableBoolean()
 
 
-    fun loadMovies(apiKey: String) = disposable.add(getMovies(apiKey))
+    fun loadMovies(apiKey: String, page: Int) = disposable.add(getMovies(apiKey, page))
 
-    private fun getMovies(apiKey: String): Disposable {
-        return getPopularMoviesInteractor.execute(getPopularMoviesInteractor.Request(apiKey))
+    private fun getMovies(apiKey: String, page: Int): Disposable {
+        return getPopularMoviesInteractor.execute(getPopularMoviesInteractor.Request(apiKey, page))
                 .subscribeWith(object : DisposableMaybeObserver<List<Movie>>() {
 
                     override fun onStart() {
@@ -34,7 +36,7 @@ class MovieViewModel(private val getPopularMoviesInteractor: GetPopularMoviesInt
                         loading.set(false)
                         result.clear()
                         result.addAll(movie)
-                        Log.d("TESTE", "" + movie)
+                        resultLiveData.value = movie
                     }
 
                     override fun onComplete() {

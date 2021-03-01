@@ -11,11 +11,13 @@ class MovieMapper {
 
         for (res in movieResponse.results) {
             listMovies.add(Movie(
+                    res.id, res.page,
                     res.adult, res.backdrop_path,
-                    res.id, res.original_title,
+                    res.original_title,
                     res.release_date, res.poster_path,
                     res.popularity, res.original_title!!,
-                    res.video, res.vote_average, res.vote_count))
+                    res.video, res.vote_average, res.vote_count)
+            )
         }
 
         return listMovies
